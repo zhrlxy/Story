@@ -2,3 +2,4 @@ openai
 quart
 aiofiles
 python-dotenv
+requests
