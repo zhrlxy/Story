@@ -83,8 +83,8 @@ async def Story_to_Images_and_Speech(gpt, upload_file_path):
     await asyncio.gather(t1, t2)
     return {
         "story":text,
-        "imagePath": f"http://10.0.0.189:5000/static/Images/image_{newimage_uuid}.png",
-        "voicePath": f"http://10.0.0.189:5000/static/Voices/voice_{newvoice_uuid}.mp3"
+        "imagePath": f"https://story-wpxb.onrender.com/static/Images/image_{newimage_uuid}.png",
+        "voicePath": f"https://story-wpxb.onrender.com/static/Voices/voice_{newvoice_uuid}.mp3"
     }
 
 
