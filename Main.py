@@ -11,12 +11,16 @@ import threading
 from pathlib import Path
 import hashlib
 import base64
+from dotenv import load_dotenv
 
 
 app = Quart(__name__)
 current_dir = Path(__file__).resolve().parent
 EXPIRE_SECONDS = 60
 SALT = '42'
+load_dotenv()
+my_key = os.getenv("MY_KEY")
+gpt = GptRequest(my_key)
 
 
 def cleanup_expired_files():
@@ -109,7 +113,6 @@ async def upload():
         async with aiofiles.open(save_path, 'wb') as f:
             await f.write(file_content)
 
-        gpt = GptRequest()
         result = await Story_to_Images_and_Speech(gpt, save_path)
         print("finish")
         return jsonify(result)
