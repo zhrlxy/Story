@@ -1,3 +1,4 @@
 openai
 quart
 aiofiles
+python-dotenv
