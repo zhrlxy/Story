@@ -24,7 +24,7 @@ gpt = GptRequest(my_key)
 
 
 def cleanup_expired_files():
-    folder_array = ['\Images', '\static\Images', '\static\Stories', '\static\Voices']
+    folder_array = ['/Images', '/static/Images', '/static/Stories', '/static/Voices']
     while True:
         print("clean run!")
         now = time.time()
@@ -52,7 +52,7 @@ async def Generate_Image(gpt, text, save_file_name):
     dict_data['image_desc'] = text
     url = await gpt.generate_image_request('dall-e-3', 'generate an cartoon image', dict_data)
     print("end image")
-    return DataHandler.get_image_from_url(url, save_file_name, rf"{current_dir}\static\Images")
+    return DataHandler.get_image_from_url(url, save_file_name, rf"{current_dir}/static/Images")
     
 async def Text_to_Voice(gpt, text, save_file_name):
     print("start voice")
@@ -60,7 +60,7 @@ async def Text_to_Voice(gpt, text, save_file_name):
     dict_data['text'] = text
     response = await gpt.generate_voice_request('tts-1-hd', 'shimmer', 'generate to voice', dict_data)
     print("end voice")
-    return DataHandler.save_voice(response.content, save_file_name, rf"{current_dir}\static\Voices")
+    return DataHandler.save_voice(response.content, save_file_name, rf"{current_dir}/static/Voices")
    
 async def Analysis_Images(gpt, upload_file_path, save_file_name):
     image_path = upload_file_path
@@ -68,7 +68,7 @@ async def Analysis_Images(gpt, upload_file_path, save_file_name):
     image_base64_data = DataHandler.encode_image(image_path)
     dict_data["image_base64_data"] = image_base64_data
     response = await gpt.async_request('gpt-4o', 'image to cartoon', 0.6, dict_data)
-    DataHandler.save_story(response, save_file_name, rf"{current_dir}\static\Stories")
+    DataHandler.save_story(response, save_file_name, rf"{current_dir}/static/Stories")
     return response
 
 async def Story_to_Images_and_Speech(gpt, upload_file_path):
