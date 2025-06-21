@@ -3,8 +3,7 @@ import json
 import re
 
 class GptRequest:
-    def __init__(self):
-        key = ""
+    def __init__(self, key):
         self.async_client = openai.AsyncOpenAI(api_key=key)
         self.client = openai.OpenAI(api_key=key)
     
